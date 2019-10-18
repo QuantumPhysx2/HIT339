@@ -32,6 +32,16 @@ a {
     font-weight: bold;
 }
 
+
+#unavailable {
+    background: #ea4141;
+    color: #fff;
+}
+
+#notgood {
+    text-align: center;
+}
+
 .search {
     margin: 10px 0px;
 }
