@@ -1,0 +1,130 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Tennis339</title>
+
+    <link rel="icon" href="~/favicon.ico" />
+    <environment include="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css" integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css" integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand">Tennis339</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse" id="navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="Index" class="nav-link">
+                            <i class="fa fa-home"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Schedules" asp-action="Index" class="nav-link">
+                            <i class="fa fa-calendar"></i>Schedules
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Coaches" asp-action="Index" class="nav-link">
+                            <i class="fa fa-male"></i>Coaches
+                        </a>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                    <li class="nav-item">
+                        <a asp-controller="ScheduleMembers" asp-action="Index" class="nav-link" id="admin">
+                            <i class="fa fa-users"></i>Members
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Administrator" asp-action="Index" class="nav-link" id="admin">
+                            <i class="fa fa-user-plus"></i>Admin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="ScheduleMembers" asp-action="MyEnrollments" class="nav-link" id="admin">My Enrollments</a>
+                    </li>
+                    }
+                    else if (User.IsInRole("Coach"))
+                    {
+                    <li class="nav-item">
+                        <a asp-controller="Coaches" asp-action="MySchedules" class="nav-link" id="coach">Upcoming Schedules</a>
+                    </li>
+                    }
+                    else if (User.IsInRole("Member"))
+                    {
+                    <li class="nav-item">
+                        <a asp-controller="ScheduleMembers" asp-action="MyEnrollments" class="nav-link" id="member">My Enrollments</a>
+                    </li>
+                    }
+                </ul>
+                <partial name="_LoginPartial" />    
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2019 - Tennis339</p>
+                @if (User.IsInRole("Admin"))
+                {
+                <div class="status">
+                    <desc>Your role: <span id="role">Admin</span></desc>
+                </div>
+                }
+                else if (User.IsInRole("Coach"))
+                {
+                <div class="status">
+                    <desc>Your role: <span id="role">Coach</span></desc>
+                </div>
+                }
+                else if (User.IsInRole("Member"))
+                {
+                <div class="status">
+                    <desc>Your role: <span id="role">Member</span></desc>
+                </div>
+                }
+            </footer>
+        </div>
+    </main>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

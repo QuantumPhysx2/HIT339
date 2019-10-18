@@ -1,0 +1,31 @@
+﻿@model List<Tennis339.ViewModels.UserRoleViewModel>
+
+@{
+    ViewData["title"] = "Modifying Role";
+
+    // Retrieve stored User ID
+    var id = ViewBag.id;
+}
+
+<div class="container">
+    <form asp-action="Modify" method="post">
+        <div class="form-group">
+            <h1>Assign this Role to:</h1>
+        </div>
+        <div class="form-group">
+            @for (int user = 0; user < Model.Count; user++)
+            {
+                <div class="user-group">
+                    <input type="hidden" asp-for="@Model[user].Id" />
+                    <input type="hidden" asp-for="@Model[user].UserName" />
+                    <input asp-for="@Model[user].IsSelected" class="custom-control-checkbox" />
+                    <label asp-for="@Model[user].IsSelected">@Model[user].UserName</label>
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-default" />
+            <a asp-action="Edit" asp-route-id="@id">Go back</a>
+        </div>
+    </form>
+</div>

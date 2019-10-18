@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Tennis339.Models.Schedule>
+
+@{
+    ViewData["Title"] = "Schedules";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Schedules</h2>
+
+@if (User.IsInRole("Admin") || User.IsInRole("Coach"))
+{
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+}
+
+<div class="search">
+    <form asp-action="Index" method="post" id="search-form">
+        <p>
+            Coach: <input type="text" class="form-control mr-sm-2" name="SearchString">
+            <input type="submit" class="btn btn-success" value="Filter" />
+        </p>
+    </form>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.When)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoachEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.When)
+            </td>
+            <td>
+                @if (User.IsInRole("Coach") || User.IsInRole("Admin"))
+                {
+                <a asp-controller="Coaches" asp-action="Schedules" asp-route-id="@item.Id">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </a>
+                }
+                else
+                {
+                <a asp-controller="Schedules" asp-action="Details" asp-route-id="@item.Id">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoachEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            @if (User.IsInRole("Admin") || User.Identity.Name == item.CoachEmail && User.IsInRole("Coach"))
+            {
+            <td>
+                <a asp-action="Enroll" asp-route-id="@item.Id" class="btn btn-success">Enroll</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+            }
+            else
+            {
+            <td>
+                <a asp-action="Enroll" asp-route-id="@item.Id" class="btn btn-success">Enroll</a>
+            </td>
+            }
+        </tr>
+}
+    </tbody>
+</table>

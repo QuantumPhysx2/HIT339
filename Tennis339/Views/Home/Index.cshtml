@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron">
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <a asp-controller="Coaches" asp-action="Index">
+            <div class="card-header"><h2>Coaches</h2></div>
+        </a>
+    </div>
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <a asp-controller="Schedules" asp-action="Index">
+            <div class="card-header"><h2>Schedules</h2></div>
+        </a>
+    </div>
+    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+        <a asp-controller="ScheduleMembers" asp-action="Index">
+            <div class="card-header"><h2>Members</h2></div>
+        </a>
+    </div>
+</div>

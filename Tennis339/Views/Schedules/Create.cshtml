@@ -1,0 +1,60 @@
+﻿@model Tennis339.ViewModels.ScheduleViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>Schedule</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Schedule.When" class="control-label"></label>
+                <input asp-for="Schedule.When" class="form-control" />
+                <span asp-validation-for="Schedule.When" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule.Description" class="control-label"></label>
+                <input asp-for="Schedule.Description" class="form-control" />
+                <span asp-validation-for="Schedule.Description" class="text-danger"></span>
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+            <div class="form-group">
+                <label asp-for="Schedule.CoachEmail" class="control-label"></label>
+                <select asp-for="Schedule.CoachEmail" asp-items="@(new SelectList(Model.Coach, "Email", "Email"))" class="form-control"></select>
+                <span asp-validation-for="Schedule.CoachEmail" class="text-danger"></span>
+            </div>
+            }
+            else
+            {
+            <div class="form-group">
+                <label asp-for="Schedule.CoachEmail" class="control-label"></label>
+                <input type="email" asp-for="Schedule.CoachEmail" class="form-control" value="@User.Identity.Name" readonly />
+                <span asp-validation-for="Schedule.CoachEmail" class="text-danger"></span>
+            </div>
+            }
+            <div class="form-group">
+                <label asp-for="Schedule.Location" class="control-label"></label>
+                <input asp-for="Schedule.Location" class="form-control" />
+                <span asp-validation-for="Schedule.Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

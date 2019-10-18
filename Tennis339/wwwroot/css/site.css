@@ -1,0 +1,133 @@
+﻿@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
+img {
+    max-width: 125px;
+}
+
+i {
+    text-align: center;
+    width: 25px;
+}
+
+li {
+    list-style: none !important;
+}
+
+.list-group-item {
+    color: #0094ff;
+}
+
+a {
+    color: #0094ff;
+}
+
+.grid-thing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 15px;
+}
+
+#role {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.search {
+    margin: 10px 0px;
+}
+
+#search-form {
+    margin: 0px auto 70px auto;
+    width: 50%;
+}
+
+#search-form input[type="text"] {
+    border: 2px solid;
+}
+
+#search-form input[type="submit"] {
+    display: inline-block;
+    float: left;
+    margin: 10px auto;
+    width: 100%;
+}
+
+#search-form a {
+    display: inline-block;
+    float: right;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 25px 0px;
+}
+
+.btn-default {
+    background: #808080;
+    color: #fff;
+}
+.table th {
+    text-transform: none;
+}
+
+.table thead th {
+    font-weight: bold;
+}
+
+.table tbody tr {
+    margin: 10px 0px;
+}
+
+.table th,
+.table td {
+    padding: 0;
+    vertical-align: unset;
+}
+
+.table .btn-success {
+    margin: 10px 0px;
+}
+
+#admin {
+    color: #ffd800;
+}
+
+#coach {
+    color: #3bae4f;
+}
+
+.card-header h2 {
+    color: #fff;
+}
+
+.card.text-white {
+    max-width: unset !important;
+}
+
+.card.text-white a h2:hover {
+    color: #e12626;
+    text-decoration: none;
+}
+
+h4.card-title {
+    text-align: center;
+}
+
+@media only screen and (max-width: 728px) {
+    .table {
+        display: block;
+        overflow: auto;
+        font-size: 9px;
+    }
+
+    .table th,
+    .table td {
+        padding: 12px;
+    }
+
+    .grid-thing {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

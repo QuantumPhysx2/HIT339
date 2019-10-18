@@ -1,0 +1,44 @@
+﻿@model Tennis339.Models.Schedule
+
+@{
+    ViewData["Title"] = "Enroll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Do you wish to enroll in this lesson?</h2>
+
+<div class="container">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoachEmail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoachEmail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+    </dl>
+    <div class="form-group">
+        <form asp-action="Enroll">
+            <div class="form-group">
+                <label asp-for="When"></label>
+                <input asp-for="When" class="form-control" readonly />
+                <span asp-validation-for="When" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Confirm" class="btn btn-success" /> |
+            <a asp-action="Index">Go back</a>
+        </form>
+    </div>
+</div>

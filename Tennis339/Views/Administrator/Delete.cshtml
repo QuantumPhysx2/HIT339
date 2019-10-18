@@ -1,0 +1,15 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+@{ 
+    ViewData["title"] = "Delete";
+}
+
+<div class="container">
+    <h1>Are you sure?</h1>
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" readonly />
+        <input type="submit" value="Confirm" class="btn btn-danger">
+        <a asp-action="Details">Go back</a>
+    </form>
+</div>

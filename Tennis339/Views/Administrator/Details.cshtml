@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewData["title"] = "Roles";
+}
+
+<div class="container">
+    <h1>Existing Roles</h1>
+
+    @if (Model.Any())
+    {
+        @foreach (var role in Model)
+        {
+            <div class="result-box">
+                <a asp-action="Edit" asp-route-id="@role.Id" class="btn-block">@Html.DisplayFor(model => role.Name)</a>
+                <hr />
+            </div>
+        }
+    }
+    else
+    {
+        <h2>No roles found</h2>
+    }
+    <a asp-action="Create" class="btn btn-default">Create a Role</a>
+    <a asp-action="Index" class="btn btn-default">Go back</a>
+</div>

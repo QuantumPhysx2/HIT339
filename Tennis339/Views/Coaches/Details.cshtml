@@ -1,0 +1,40 @@
+﻿@model Tennis339.Models.Coach
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Coach</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Biography)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Biography)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoUrl)
+        </dt>
+        <dd>
+            <img alt="Coach Image" src="@Html.DisplayFor(model => model.PhotoUrl)" />
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("Admin") || User.Identity.Name == Model.Email && User.IsInRole("Coach"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-default">Edit</a>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>

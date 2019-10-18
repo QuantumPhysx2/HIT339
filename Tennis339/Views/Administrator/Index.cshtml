@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Tennis339.Models.Coach>
+
+@{
+    ViewData["title"] = "Admin Panel";
+}
+
+<div class="container">
+    <h1>Admin Panel</h1>
+    <div>
+        @foreach (var item in Model)
+        {
+            <a asp-controller="Coaches" asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Email)</a>
+            <a asp-controller="Coaches" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a>
+            <a asp-controller="Coaches" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+            <hr />
+        }
+    </div>
+    <div>
+        <a asp-action="Create" class="btn btn-default">Create a Role</a>
+        <a asp-action="Details" class="btn btn-default">List of Roles</a>
+    </div>
+</div>

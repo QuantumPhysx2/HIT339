@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Tennis339.Models.ScheduleMembers>
+
+@{
+    ViewData["Title"] = "My Enrollments";
+}
+
+<div class="container">
+    <h1>My Enrollments</h1>
+    @foreach (var item in Model)
+    {
+        <h3>
+            Schedule: <a asp-controller="Schedules" asp-action="Details" asp-route-id="@item.ScheduleId">@Html.DisplayFor(modelItem => item.ScheduleId)</a>
+        </h3>
+        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Unenroll</a>
+        <hr />
+    }
+</div>
