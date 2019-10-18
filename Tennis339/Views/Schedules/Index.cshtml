@@ -69,18 +69,36 @@
             </td>
             @if (User.IsInRole("Admin") || User.Identity.Name == item.CoachEmail && User.IsInRole("Coach"))
             {
-            <td>
-                <a asp-action="Enroll" asp-route-id="@item.Id" class="btn btn-success">Enroll</a> |
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
+                @if (item.When < DateTime.Now)
+                {
+                <td id="notgood">
+                    <a class="btn btn-default" id="unavailable">Unavailable</a>
+                </td>
+                }
+                else
+                {
+                <td>
+                    <a asp-action="Enroll" asp-route-id="@item.Id" class="btn btn-success">Enroll</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+                }
             }
             else
             {
-            <td>
-                <a asp-action="Enroll" asp-route-id="@item.Id" class="btn btn-success">Enroll</a>
-            </td>
+                @if (item.When < DateTime.Now)
+                {
+                <td id="notgood">
+                    <a class="btn btn-default" id="unavailable">Unavailable</a>
+                </td>
+                }
+                else
+                {
+                <td>
+                    <a asp-action="Enroll" asp-route-id="@item.Id" class="btn btn-success">Enroll</a>
+                </td>
+                }
             }
         </tr>
 }
