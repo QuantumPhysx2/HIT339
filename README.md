@@ -1,2 +1,2 @@
 # HIT339
-Assignment Two - .NET COre
+Assignment Two - .NET Core
